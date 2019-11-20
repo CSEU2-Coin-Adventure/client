@@ -27,11 +27,22 @@ export class Player {
       console.log(error);
     }
   }
-  public async move(dir: string, next: number) {
+  public async move(direction: string, next: string) {
     try {
       const room = await this.AxiosAuth.post(`${this.BASE_URL}/adv/move/`, {
-        direction: dir,
+        direction,
         next_room_id: next
+      });
+      this.currentRoom = new Room(room.data);
+      this.cooldown = room.data.cooldown;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  public async flight(direction: string) {
+    try {
+      const room = await this.AxiosAuth.post(`${this.BASE_URL}/adv/fly/`, {
+        direction
       });
       this.currentRoom = new Room(room.data);
       this.cooldown = room.data.cooldown;
