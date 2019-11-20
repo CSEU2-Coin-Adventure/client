@@ -1,5 +1,5 @@
 export class Room {
-  room_id: number;
+  room_id: string;
   title: string;
   description: string;
   coordinates: string;
@@ -22,5 +22,9 @@ export class Room {
     this.exits = obj.exits;
     this.error = obj.errors;
     this.message = obj.message;
+  }
+
+  public isShop() {
+    return this.room_id === '?' && this.title === 'Shop';
   }
 }
