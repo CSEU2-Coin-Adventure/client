@@ -1,6 +1,6 @@
 import Axios, { AxiosInstance } from 'axios';
 import { Room } from './Room';
-import { directive } from '@babel/types';
+import { Inventory } from './typings';
 
 export class Player {
   cooldown: number;
@@ -39,22 +39,103 @@ export class Player {
       console.log(error);
     }
   }
-  public async pickTreasure() {
+  public async pickTreasure(treasure: string) {
     try {
-      const treasure = await this.AxiosAuth.post(`${this.BASE_URL}/adv/take/`, {
-        name: 'treasure'
+      const request = await this.AxiosAuth.post(`${this.BASE_URL}/adv/take/`, {
+        name: treasure
       });
-      console.log(treasure);
+      console.log(request);
     } catch (error) {
       console.log(error);
     }
   }
-  public async dropTreasure() {
+  public async dropTreasure(treasure: string) {
     try {
-      const treasure = await this.AxiosAuth.post(`${this.BASE_URL}/adv/drop/`, {
-        name: 'treasure'
+      const request = await this.AxiosAuth.post(`${this.BASE_URL}/adv/drop/`, {
+        name: treasure
       });
-      console.log(treasure);
+      console.log(request);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  public async sellTreasure(treasure: string) {
+    try {
+      const request = await this.AxiosAuth.post(`${this.BASE_URL}/adv/sell/`, {
+        name: treasure
+      });
+      console.log(request);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  public async confirmTreasureSale(treasure: string) {
+    try {
+      const request = await this.AxiosAuth.post(`${this.BASE_URL}/adv/sell/`, {
+        name: treasure,
+        confirm: 'yes'
+      });
+      console.log(request);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  public async getInventory(): Promise<Inventory | undefined> {
+    try {
+      const treasure: Inventory = await this.AxiosAuth.post(
+        `${this.BASE_URL}/adv/status/`
+      );
+      return treasure;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  public async examine(name: string) {
+    try {
+      const request = await this.AxiosAuth.post(
+        `${this.BASE_URL}/adv/examine/`,
+        {
+          name
+        }
+      );
+      return request;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  public async wear(name: string) {
+    try {
+      const request = await this.AxiosAuth.post(`${this.BASE_URL}/adv/wear/`, {
+        name
+      });
+      console.log(request);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  public async undress(name: string) {
+    try {
+      const request = await this.AxiosAuth.post(
+        `${this.BASE_URL}/adv/undress/`,
+        {
+          name
+        }
+      );
+      console.log(request);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  public async changeName(name: string) {
+    try {
+      const request = await this.AxiosAuth.post(
+        `${this.BASE_URL}/adv/change_name/`,
+        {
+          name
+        }
+      );
+      this.name = name;
+      console.log(request);
     } catch (error) {
       console.log(error);
     }

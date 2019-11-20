@@ -27,4 +27,7 @@ export class Room {
   public isShop() {
     return this.room_id === '?' && this.title === 'Shop';
   }
+  public isShrine() {
+    return this.room_id === '?' && this.title === 'Shrine';
+  }
 }
