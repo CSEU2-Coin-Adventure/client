@@ -140,4 +140,12 @@ export class Player {
       console.log(error);
     }
   }
+  public async pray() {
+    try {
+      const request = await this.AxiosAuth.post(`${this.BASE_URL}/adv/pray/`);
+      console.log(request);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
