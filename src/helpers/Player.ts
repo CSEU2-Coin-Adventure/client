@@ -57,7 +57,7 @@ export class Player {
   ) {
     try {
       if (next_room_ids.split(',').length === num_rooms) {
-        const room = await this.AxiosAuth.post(`${this.BASE_URL}/adv/fly/`, {
+        const room = await this.AxiosAuth.post(`${this.BASE_URL}/adv/dash/`, {
           direction,
           num_rooms: num_rooms.toString(),
           next_room_ids
@@ -175,6 +175,29 @@ export class Player {
   public async pray() {
     try {
       const request = await this.AxiosAuth.post(`${this.BASE_URL}/adv/pray/`);
+      console.log(request);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  public async carry(name: string) {
+    try {
+      const request = await this.AxiosAuth.post(`${this.BASE_URL}/adv/carry/`, {
+        name
+      });
+      console.log(request);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  public async recieve(name: string) {
+    try {
+      const request = await this.AxiosAuth.post(
+        `${this.BASE_URL}/adv/receive/`,
+        {
+          name
+        }
+      );
       console.log(request);
     } catch (error) {
       console.log(error);
