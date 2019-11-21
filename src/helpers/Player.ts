@@ -50,6 +50,27 @@ export class Player {
       console.log(error);
     }
   }
+  public async dash(
+    direction: string,
+    num_rooms: number,
+    next_room_ids: string
+  ) {
+    try {
+      if (next_room_ids.split(',').length === num_rooms) {
+        const room = await this.AxiosAuth.post(`${this.BASE_URL}/adv/fly/`, {
+          direction,
+          num_rooms: num_rooms.toString(),
+          next_room_ids
+        });
+        this.currentRoom = new Room(room.data);
+        this.cooldown = room.data.cooldown;
+      } else {
+        console.log('Wrong dash command');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   public async pickTreasure(treasure: string) {
     try {
       const request = await this.AxiosAuth.post(`${this.BASE_URL}/adv/take/`, {
