@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Icon } from 'antd';
+import { Player } from '../helpers/Player';
 
 const Game = () => {
   return (
@@ -12,7 +13,7 @@ const Game = () => {
           gridColumn: '2/8'
         }}
       >
-        <Icon type="up" />
+        <Icon type="caret-up" />
       </div>
       <div
         className="dir b"
@@ -21,7 +22,7 @@ const Game = () => {
           gridColumn: '2/8'
         }}
       >
-        <Icon type="down" />
+        <Icon type="caret-down" />
       </div>
       <div
         className="dir r"
@@ -30,7 +31,7 @@ const Game = () => {
           gridColumn: '8/-1'
         }}
       >
-        <Icon type="right" />
+        <Icon type="caret-right" />
       </div>
       <div
         className="dir l"
@@ -39,7 +40,7 @@ const Game = () => {
           gridColumn: '1/2'
         }}
       >
-        <Icon type="left" />
+        <Icon type="caret-left" />
       </div>
     </Arena>
   );
